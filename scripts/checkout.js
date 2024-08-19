@@ -100,7 +100,6 @@ document.querySelectorAll('.js-delete-quantity-link').forEach((link) => {
         const productId = link.dataset.productId;
 
         removeFromCart(productId);
-        // document.querySelector(`.js-cart-item-container-productId`).remove();
-        link.parentElement.parentElement.parentElement.remove();
+        document.querySelector(`.js-cart-item-container-${productId}`).remove();
     });
 });
