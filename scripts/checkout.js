@@ -3,6 +3,7 @@ import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { deliveryOptions } from "../data/deliveryOptions.js";
+// import { updateCartQuantity } from "./amazon.js";
 
 let cartSummaryHtml = '';
 
@@ -57,6 +58,7 @@ cart.forEach((cartItem) => {
     </div>`
 });
 
+
 function deliveryOptionsHtml(matchingProduct) {
 
     let html = '';
@@ -71,6 +73,7 @@ function deliveryOptionsHtml(matchingProduct) {
         html +=
             `<div class="delivery-option">
                 <input type="radio"
+                checked
                 class="delivery-option-input"
                 name="delivery-option-${matchingProduct.id}">
                 <div>
@@ -97,3 +100,5 @@ document.querySelectorAll('.js-delete-quantity-link').forEach((link) => {
         document.querySelector(`.js-cart-item-container-${productId}`).remove();
     });
 });
+
+// WIP: Update the checkout number in two places by importing function.
