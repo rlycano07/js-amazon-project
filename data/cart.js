@@ -23,7 +23,7 @@ export function addToCart(addQuantity, productId) {
     let matchingItem;
 
     cart.forEach((cartItem) => {
-        if (cartItem.productId === productId) {
+        if (productId === cartItem.productId) {
             matchingItem = cartItem;
         }
     });
@@ -51,6 +51,20 @@ export function removeFromCart(productId) {
 
     cart = newCart;
 
+    saveToStorage();
+}
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+    let matchingItem;
+
+    cart.forEach((cartItem) => {
+        if (productId === cartItem.productId
+        ) {
+            matchingItem = cartItem;
+        }
+    });
+
+    matchingItem.deliveryOptionId = deliveryOptionId;
     saveToStorage();
 }
 
