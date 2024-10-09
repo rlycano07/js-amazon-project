@@ -4,7 +4,6 @@ import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSymmary.js";
-// import { updateCartQuantity } from "./amazon.js";
 
 
 export function renderOrderSummary() {

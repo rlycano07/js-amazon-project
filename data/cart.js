@@ -68,3 +68,17 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
     saveToStorage();
 }
 
+export function numberOfItemsInCart() {
+    var length = 0;
+
+    cart.forEach((cartItem) => {
+        length += cartItem.quantity;
+    });
+
+    const cartQuantityElement = document.querySelector('.js-cart-quantity');
+    if (cartQuantityElement) {
+        cartQuantityElement.innerHTML = length;
+    }
+
+    return length;
+}
