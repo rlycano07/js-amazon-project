@@ -4,6 +4,7 @@ import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSymmary.js";
+import { ChangeQuantityOnCart } from "../../data/cart.js";
 
 
 export function renderOrderSummary() {
@@ -38,13 +39,25 @@ export function renderOrderSummary() {
                 ${matchingProduct.name}
             </div>
             <div class="product-price">
-                $${formatCurrency(matchingProduct.priceCents)}
+                Unit Price: $${formatCurrency(matchingProduct.priceCents)}
             </div>
             <div class="product-quantity">
                 <span>
-                Quantity: <span class="quantity-label">${cartItem.quantity}</span>
-                </span>
-                <span class="update-quantity-link link-primary">
+                Quantity: 
+                <select class="quantity-label">
+                    <option selected value="${cartItem.quantity}" style="display:none;">${cartItem.quantity}</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id="${matchingProduct.id}">
                 Update
                 </span>
                 <span class="delete-quantity-link js-delete-quantity-link link-primary" data-product-id="${matchingProduct.id}">
@@ -115,6 +128,16 @@ export function renderOrderSummary() {
             renderPaymentSummary();
         });
     });
-}
 
-// WIP: Update the checkout number in two places by importing function.
+    document.querySelectorAll('.js-update-quantity-link').forEach((link) => {
+        link.addEventListener('click', (event) => {
+
+            const productId = link.dataset.productId;
+            const selectedQuantity = parseInt(link.parentElement.querySelector('.quantity-label').value);;
+            console.log(selectedQuantity);
+            ChangeQuantityOnCart(selectedQuantity, productId);
+            renderOrderSummary();
+            renderPaymentSummary();
+        });
+    });
+}
