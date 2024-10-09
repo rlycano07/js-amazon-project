@@ -82,7 +82,7 @@ export function renderOrderSummary() {
 
         deliveryOptions.forEach((deliveryOption) => {
             const today = dayjs();
-            const deliveryDate = today.add(deliveryOption.id, 'days');
+            const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
             const deliveryDateString = deliveryDate.format('dddd, MMMM D');
             const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
 
